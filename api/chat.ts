@@ -80,7 +80,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Get API key
-    const apiKey = process.env.GEMINI_API_KEY?.trim().replace(/["']/g, '');
+    const apiKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY)?.trim().replace(/["']/g, '');
     if (!apiKey) {
       console.error('[api/chat] GEMINI_API_KEY is not set');
       return res.status(200).json({
